@@ -14,6 +14,5 @@ defmodule Videosnack.Repo.Migrations.CreatePlans do
 
       timestamps()
     end
-
   end
 end

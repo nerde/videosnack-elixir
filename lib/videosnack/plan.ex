@@ -3,6 +3,7 @@ defmodule Videosnack.Plan do
   import Ecto.Changeset
 
   schema "plans" do
+    has_many :accounts, Videosnack.Account
     field :allows_domain, :boolean, default: false
     field :fee_percent, :float
     field :max_members, :integer
