@@ -4,27 +4,48 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Videosnack · Phoenix Framework</title>
+    <meta name="description" content="Publish & Sell your videos on demand!">
+    <title>Video Snack</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Covered+By+Your+Grace' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
-    <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-          </ul>
+    <header id="top" class="header fixed-top">
+      <div class="container">
+        <h1 class="logo float-left">
+          <a class="scrollto" href="#promo">
+            <img id="logo-image" class="logo-image"
+              src="<%= Routes.static_path(@conn, "/images/logo.png") %>" alt="Logo">
+            <span class="logo-title">Video Snack</span>
+          </a>
+        </h1>
+
+        <nav id="main-nav" class="main-nav navbar-light navbar-expand-md" role="navigation">
+          <button class="navbar-toggler" type="button"
+            data-toggle="collapse" data-target="#navbar-collapse"
+            aria-controls="navbar-collapse" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="navbar-collapse collapse justify-content-end" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li class="active nav-item sr-only"><a class="scrollto" href="#promo">Home</a></li>
+              <li class="nav-item"><a class="nav-link text-danger" href="#features">Sign Up for Free!</a></li>
+            </ul>
+          </div>
         </nav>
-        <a href="http://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
+      </div>
     </header>
+
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
       <%= render @view_module, @view_template, assigns %>
     </main>
+
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
