@@ -16,7 +16,9 @@ defmodule VideosnackWeb.Router do
   scope "/", VideosnackWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", LandingController, :index
+
+    resources "/accounts", AccountController, only: [:new, :create]
   end
 
   # Other scopes may use custom stacks.

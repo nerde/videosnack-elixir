@@ -1,4 +1,4 @@
-defmodule VideosnackWeb.PageController do
+defmodule VideosnackWeb.LandingController do
   use VideosnackWeb, :controller
 
   def index(conn, _params) do

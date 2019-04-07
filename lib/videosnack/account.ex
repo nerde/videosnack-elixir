@@ -12,7 +12,7 @@ defmodule Videosnack.Account do
   end
 
   @doc false
-  def changeset(account, attrs) do
+  def changeset(account, attrs \\ %{}) do
     account
     |> cast(attrs, [:slug, :name, :domain, :plan_id])
     |> validate_required([:slug, :name, :plan_id])
