@@ -73,3 +73,7 @@ config :videosnack, Videosnack.Repo,
   database: "videosnack_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+      client_id: "9770d952c49fdf0c4d64",
+      client_secret: "698312cd8422504515ca3c90e4f3ef58ee9a5c9e"

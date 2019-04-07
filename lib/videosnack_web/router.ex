@@ -21,8 +21,11 @@ defmodule VideosnackWeb.Router do
     resources "/accounts", AccountController, only: [:new, :create]
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", VideosnackWeb do
-  #   pipe_through :api
-  # end
+  scope "/auth", VideosnackWeb do
+    pipe_through :browser
+
+    get "/new", AuthController, :new
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+  end
 end

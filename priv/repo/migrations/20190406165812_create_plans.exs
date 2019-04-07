@@ -14,5 +14,8 @@ defmodule Videosnack.Repo.Migrations.CreatePlans do
 
       timestamps()
     end
+
+    create unique_index(:plans, [:slug])
+    create unique_index(:plans, [:name])
   end
 end

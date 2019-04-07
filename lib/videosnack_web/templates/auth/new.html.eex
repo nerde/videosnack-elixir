@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3 pt-5">
+    <div class="text-center mb-5">
+      <img src="<%= Routes.static_path(@conn, "/images/logo.png") %>" alt="Logo" class="my-3">
+      <h1>Authenticate</h1>
+    </div>
+
+    <ul>
+      <li><%= link "Github", to: Routes.auth_path(@conn, :request, "github") %></li>
+    </ul>
+  </div>
+</div>

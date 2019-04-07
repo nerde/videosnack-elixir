@@ -20,7 +20,7 @@ defmodule Videosnack.MixProject do
   def application do
     [
       mod: {Videosnack.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :ueberauth, :ueberauth_github]
     ]
   end
 
@@ -42,7 +42,10 @@ defmodule Videosnack.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:ueberauth, "~> 0.6"},
+      {:ueberauth_github, "~> 0.7"},
+      {:poison, "~> 3.1"}
     ]
   end
 
