@@ -11,12 +11,15 @@ defmodule VideosnackWeb.AccountController do
   end
 
   def create(conn, %{"account" => account}) do
-    Repo.transaction fn ->
-      changeset = Account.changeset(%Account{}, Map.put(account, "plan_id", 1))
-      Repo.insert!(%Member{user_id: conn.assigns[:user].id, account_id: Repo.insert!(changeset).id, role: "owner"})
-    end
+    changeset = Account.changeset(%Account{}, Map.put(account, "plan_id", 1))
 
-    redirect(conn, to: Routes.account_path(conn, :show, account["slug"]))
+    if changeset.valid? do
+      Repo.transaction fn -> Member.sign_up!(conn.assigns[:user], Repo.insert!(changeset)) end
+
+      redirect(conn, to: Routes.account_path(conn, :show, account["slug"]))
+    else
+      render(conn, :new, changeset: changeset)
+    end
   end
 
   def show(conn, %{"slug" => slug}) do

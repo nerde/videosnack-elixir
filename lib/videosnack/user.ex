@@ -34,5 +34,7 @@ defmodule Videosnack.User do
     user
     |> cast(attrs, [:name, :email, :provider, :token, :root])
     |> validate_required([:email])
+    |> update_change(:email, &String.downcase/1)
+    |> unique_constraint(:email)
   end
 end

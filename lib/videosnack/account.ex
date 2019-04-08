@@ -16,5 +16,6 @@ defmodule Videosnack.Account do
     account
     |> cast(attrs, [:slug, :name, :domain, :plan_id])
     |> validate_required([:slug, :name, :plan_id])
+    |> unique_constraint(:slug)
   end
 end
