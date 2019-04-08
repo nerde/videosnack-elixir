@@ -20,6 +20,10 @@ defmodule VideosnackWeb.Router do
     get "/", LandingController, :index
 
     resources "/accounts", AccountController, only: [:new, :create]
+
+    scope "/:slug" do
+      get "/", AccountController, :show
+    end
   end
 
   scope "/auth", VideosnackWeb do

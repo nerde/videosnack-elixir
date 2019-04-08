@@ -12,7 +12,6 @@ defmodule Videosnack.User do
     field :provider, :string
     field :token, :string
     field :root, :boolean, default: false
-    field :account_id, :id
 
     timestamps()
   end
