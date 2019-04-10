@@ -8,8 +8,8 @@ defmodule Videosnack.Member do
 
   schema "members" do
     field :role, :string
-    field :account_id, :id
-    field :user_id, :id
+    belongs_to :account, Videosnack.Account
+    belongs_to :user, Videosnack.User
 
     timestamps()
   end
