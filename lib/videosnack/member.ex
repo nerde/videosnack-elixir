@@ -23,6 +23,6 @@ defmodule Videosnack.Member do
     member
     |> cast(attrs, [:role, :account_id, :user_id])
     |> validate_required([:role, :account_id, :user_id])
-    |> validate_inclusion(:role, ["owner", "admin"])
+    |> validate_inclusion(:role, ~w(owner admin))
   end
 end

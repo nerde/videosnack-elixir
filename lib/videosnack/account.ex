@@ -17,5 +17,6 @@ defmodule Videosnack.Account do
     |> cast(attrs, [:slug, :name, :domain, :plan_id])
     |> validate_required([:slug, :name, :plan_id])
     |> unique_constraint(:slug)
+    |> validate_exclusion(:slug, ~w(admin dashboard terms privacy policy pricing plans features))
   end
 end
