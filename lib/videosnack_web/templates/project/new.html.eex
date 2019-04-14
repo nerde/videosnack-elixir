@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3 pt-5">
+    <div class="text-center mb-5">
+      <h1>Create a Project</h1>
+    </div>
+
+    <%= form_for @changeset, Routes.project_path(@conn, :create, @current_account.slug), fn f -> %>
+      <%= text_input f, :name, class: "form-control mb-4", placeholder: "Name", autofocus: true, data_set_slug: "#project_slug" %>
+
+      <div class="input-group mb-4">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><%= VideosnackWeb.Endpoint.url %>/<%= @current_account.slug %>/</span>
+        </div>
+
+        <%= text_input f, :slug, class: "form-control", placeholder: "project-name" %>
+      </div>
+
+      <%= textarea f, :description, class: "form-control markdown-editor", placeholder: "Description (optional)" %>
+
+      <div class="form-group d-flex align-items-center mt-4">
+        <%= link "Cancel", to: Routes.account_path(@conn, :show, @current_account.slug), class: "btn btn-outline-secondary" %>
+
+        <%= submit "Next", class: "ml-auto btn btn-danger btn-lg" %>
+      </div>
+    <% end %>
+  </div>
+</div>

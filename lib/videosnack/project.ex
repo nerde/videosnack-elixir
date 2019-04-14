@@ -16,7 +16,7 @@ defmodule Videosnack.Project do
   end
 
   @doc false
-  def changeset(project, attrs) do
+  def changeset(project, attrs \\ %{}) do
     project
     |> cast(attrs, [:name, :published_at, :first_published_at, :first_purchased_at, :description, :distribution, :price_cents])
     |> validate_required([:name, :distribution])

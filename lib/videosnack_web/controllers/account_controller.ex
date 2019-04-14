@@ -5,6 +5,8 @@ defmodule VideosnackWeb.AccountController do
   alias Videosnack.Member
   alias Videosnack.Repo
 
+  plug VideosnackWeb.Plugs.RequireUser
+
   def new(conn, _params) do
     changeset = Account.changeset(%Account{})
     render(conn, :new, changeset: changeset)
@@ -22,8 +24,7 @@ defmodule VideosnackWeb.AccountController do
     end
   end
 
-  def show(conn, %{"slug" => slug}) do
-    account = Repo.get_by!(Account, slug: slug)
-    render(conn, :show, account: account)
+  def show(conn, _params) do
+    render(conn, :show)
   end
 end

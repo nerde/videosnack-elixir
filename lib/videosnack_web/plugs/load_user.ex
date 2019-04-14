@@ -1,4 +1,4 @@
-defmodule VideosnackWeb.Plugs.Auth do
+defmodule VideosnackWeb.Plugs.LoadUser do
   import Plug.Conn
 
   alias Videosnack.Repo

@@ -14,10 +14,16 @@
     <header id="top" class="header fixed-top">
       <div class="container">
         <h1 class="logo float-left">
-          <a class="scrollto" href="#promo">
+          <%= link to: Routes.landing_path(@conn, :index) do %>
             <img id="logo-image" class="logo-image" src="<%= Routes.static_path(@conn, "/images/logo.png") %>" alt="Logo">
-            <span class="logo-title">Video Snack</span>
-          </a>
+            <span class="logo-title">
+              <%= if @current_account do %>
+                <%= @current_account.name %>
+              <% else %>
+                Video Snack
+              <% end %>
+            </span>
+          <% end %>
         </h1>
 
         <nav id="main-nav" class="main-nav navbar-light navbar-expand-md" role="navigation">

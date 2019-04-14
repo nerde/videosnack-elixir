@@ -1,1 +1,8 @@
-<h1>Show! <%= @account.slug %></h1>
+<h1 class="pt-4">Projects</h1>
+<hr>
+
+<div class="row">
+  <div class="col-sm-3 col-md-2">
+    <%= link 'Add Project', to: Routes.project_path(@conn, :new, @current_account.slug) %>
+  </div>
+</div>
