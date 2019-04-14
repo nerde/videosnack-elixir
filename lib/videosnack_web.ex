@@ -42,6 +42,8 @@ defmodule VideosnackWeb do
       import VideosnackWeb.ErrorHelpers
       import VideosnackWeb.Gettext
       alias VideosnackWeb.Router.Helpers, as: Routes
+
+      import VideosnackWeb.BootstrapHelpers
     end
   end
 

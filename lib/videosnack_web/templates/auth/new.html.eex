@@ -8,5 +8,19 @@
     <ul>
       <li><%= link "Github", to: Routes.auth_path(@conn, :request, "github") %></li>
     </ul>
+
+    <hr>
+
+    <%= form_for @changeset, Routes.auth_path(@conn, :create), [class: form_classes(@changeset)], fn f -> %>
+      <%= email_input f, :email, class: "form-control", placeholder: "Email", autofocus: true, required: true %>
+      <%= error_tag f, :email %>
+
+      <%= password_input f, :encrypted_password, class: "form-control mt-4", placeholder: "Password", required: true, minlength: 8 %>
+      <%= error_tag f, :encrypted_password %>
+
+      <div class="text-center mt-4">
+        <%= submit "Authenticate", class: "ml-auto btn btn-danger btn-lg" %>
+      </div>
+    <% end %>
   </div>
 </div>

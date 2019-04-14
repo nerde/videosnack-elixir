@@ -26,5 +26,6 @@ defmodule Videosnack.Project do
     |> validate_required(~w(name slug distribution account_id)a)
     |> validate_inclusion(:distribution, Distribution.kinds)
     |> validate_exclusion(:slug, Slug.reserved)
+    |> unique_constraint(:slug, name: :projects_slug_account_id_index)
   end
 end

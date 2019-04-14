@@ -20,5 +20,6 @@ defmodule Videosnack.Account do
     |> validate_required(~w(slug name plan_id)a)
     |> unique_constraint(:slug)
     |> validate_exclusion(:slug, Slug.reserved)
+    |> unique_constraint(:slug)
   end
 end

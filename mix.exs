@@ -45,7 +45,10 @@ defmodule Videosnack.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:ueberauth, "~> 0.6"},
       {:ueberauth_github, "~> 0.7"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:comeonin, "~> 4.0"},
+      {:bcrypt_elixir, "~> 1.0"},
+      {:hound, "~> 1.0"}
     ]
   end
 

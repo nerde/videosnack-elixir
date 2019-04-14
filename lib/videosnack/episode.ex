@@ -2,6 +2,8 @@ defmodule Videosnack.Episode do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Videosnack.Distribution
+
   schema "episodes" do
     field :content, :string
     field :description, :string

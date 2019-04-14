@@ -5,6 +5,7 @@ defmodule Videosnack.Repo.Migrations.CreateUsers do
     create table(:users) do
       add :name, :string
       add :email, :string, null: false
+      add :encrypted_password, :string
       add :provider, :string
       add :token, :string
       add :root, :boolean, default: false, null: false

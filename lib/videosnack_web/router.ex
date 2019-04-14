@@ -7,11 +7,8 @@ defmodule VideosnackWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug VideosnackWeb.Plugs.LoadUser
-  end
-
-  pipeline :load_account do
     plug VideosnackWeb.Plugs.LoadAccount
+    plug VideosnackWeb.Plugs.LoadUser
   end
 
   pipeline :require_account do
@@ -23,7 +20,7 @@ defmodule VideosnackWeb.Router do
   end
 
   scope "/", VideosnackWeb do
-    pipe_through [:browser, :load_account]
+    pipe_through :browser
 
     get "/", LandingController, :index
 
@@ -42,6 +39,7 @@ defmodule VideosnackWeb.Router do
     pipe_through :browser
 
     get "/new", AuthController, :new
+    post "/", AuthController, :create
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
   end

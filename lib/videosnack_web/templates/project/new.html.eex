@@ -23,7 +23,7 @@
         <div>
           <%= for kind <- Videosnack.Distribution.kinds do %>
             <div class="form-check form-check-inline" data-toggle="tooltip" data-placement="top"
-                 title="<%= distribution_tootlips[kind] %>" data-trigger="hover">
+                 title="<%= distribution_tootlips()[kind] %>" data-trigger="hover">
               <%= radio_button f, :distribution, kind, class: "form-check-input distribution-radio",
                                id: "distribution-#{kind}", data_show_price: "#price" %>
               <label class="form-check-label" for="distribution-<%= kind %>"><%= String.capitalize(kind) %></label>

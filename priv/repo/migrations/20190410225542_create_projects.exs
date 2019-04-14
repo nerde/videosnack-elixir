@@ -16,6 +16,6 @@ defmodule Videosnack.Repo.Migrations.CreateProjects do
       timestamps()
     end
 
-    create unique_index(:projects, [:account_id, :slug])
+    create unique_index(:projects, [:slug, :account_id])
   end
 end
