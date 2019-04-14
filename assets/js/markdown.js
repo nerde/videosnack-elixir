@@ -3,4 +3,4 @@ import SimpleMDE from 'simplemde';
 
 $(() => {
   $('.markdown-editor').each(() => new SimpleMDE({ element: this }));
-})
+});

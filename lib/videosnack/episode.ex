@@ -22,8 +22,8 @@ defmodule Videosnack.Episode do
   @doc false
   def changeset(episode, attrs) do
     episode
-    |> cast(attrs, [:name, :description, :content, :license, :duration_seconds, :distribution, :published_at, :first_published_at, :first_purchased_at, :price_cents])
-    |> validate_required([:name, :license, :distribution])
-    |> validate_inclusion(:distribution, ~w(free subscription purchase))
+    |> cast(attrs, ~w(name description content license distribution price_cents)a)
+    |> validate_required(~w(name license distribution)a)
+    |> validate_inclusion(:distribution, Distribution.kinds)
   end
 end

@@ -2,6 +2,8 @@ defmodule Videosnack.Account do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Videosnack.Slug
+
   schema "accounts" do
     field :domain, :string
     field :name, :string
@@ -14,9 +16,9 @@ defmodule Videosnack.Account do
   @doc false
   def changeset(account, attrs \\ %{}) do
     account
-    |> cast(attrs, [:slug, :name, :domain, :plan_id])
-    |> validate_required([:slug, :name, :plan_id])
+    |> cast(attrs, ~w(slug name domain)a)
+    |> validate_required(~w(slug name plan_id)a)
     |> unique_constraint(:slug)
-    |> validate_exclusion(:slug, ~w(admin dashboard terms privacy policy pricing plans features))
+    |> validate_exclusion(:slug, Slug.reserved)
   end
 end

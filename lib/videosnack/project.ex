@@ -2,6 +2,9 @@ defmodule Videosnack.Project do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Videosnack.Slug
+  alias Videosnack.Distribution
+
   schema "projects" do
     field :description, :string
     field :distribution, :string
@@ -10,6 +13,7 @@ defmodule Videosnack.Project do
     field :name, :string
     field :price_cents, :integer
     field :published_at, :utc_datetime
+    field :slug, :string
     belongs_to :account, Videosnack.Account
 
     timestamps()
@@ -18,8 +22,9 @@ defmodule Videosnack.Project do
   @doc false
   def changeset(project, attrs \\ %{}) do
     project
-    |> cast(attrs, [:name, :published_at, :first_published_at, :first_purchased_at, :description, :distribution, :price_cents])
-    |> validate_required([:name, :distribution])
-    |> validate_inclusion(:distribution, ~w(free subscription purchase))
+    |> cast(attrs, ~w(name slug description distribution price_cents)a)
+    |> validate_required(~w(name slug distribution account_id)a)
+    |> validate_inclusion(:distribution, Distribution.kinds)
+    |> validate_exclusion(:slug, Slug.reserved)
   end
 end

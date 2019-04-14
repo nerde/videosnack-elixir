@@ -4,6 +4,7 @@ defmodule Videosnack.Repo.Migrations.CreateProjects do
   def change do
     create table(:projects) do
       add :name, :string, null: false
+      add :slug, :string, null: false
       add :published_at, :utc_datetime
       add :first_published_at, :utc_datetime
       add :first_purchased_at, :utc_datetime
@@ -15,6 +16,6 @@ defmodule Videosnack.Repo.Migrations.CreateProjects do
       timestamps()
     end
 
-    create index(:projects, [:account_id])
+    create unique_index(:projects, [:account_id, :slug])
   end
 end
