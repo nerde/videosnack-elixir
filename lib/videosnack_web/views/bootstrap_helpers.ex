@@ -2,6 +2,10 @@ defmodule VideosnackWeb.BootstrapHelpers do
   use Phoenix.HTML
   import Phoenix.Controller, only: [get_flash: 2]
 
+  def bs_form_for(changeset, path, func) do
+    form_for(changeset, path, [class: form_classes(changeset)], func)
+  end
+
   def form_classes(changeset) do
     [{"was-validated", was_validated?(changeset)}]
     |> Enum.filter(& elem(&1, 1))

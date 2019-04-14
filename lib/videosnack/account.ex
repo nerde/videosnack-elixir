@@ -16,7 +16,7 @@ defmodule Videosnack.Account do
   @doc false
   def changeset(account, attrs \\ %{}) do
     account
-    |> cast(attrs, ~w(slug name domain)a)
+    |> cast(attrs, ~w(slug name domain plan_id)a)
     |> validate_required(~w(slug name plan_id)a)
     |> unique_constraint(:slug)
     |> validate_exclusion(:slug, Slug.reserved)

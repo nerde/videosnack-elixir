@@ -16,6 +16,11 @@ defmodule Videosnack.Plan do
     timestamps()
   end
 
+  def describe(plan) do
+    cents = plan.price_cents
+    "#{plan.name} (#{if cents == 0, do: 'Free!', else: Number.Currency.number_to_currency(cents / 100) <> "/mo"})"
+  end
+
   @doc false
   def changeset(plan, attrs) do
     plan

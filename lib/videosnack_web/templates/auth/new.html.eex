@@ -11,7 +11,7 @@
 
     <hr>
 
-    <%= form_for @changeset, Routes.auth_path(@conn, :create), [class: form_classes(@changeset)], fn f -> %>
+    <%= bs_form_for @changeset, Routes.auth_path(@conn, :create), fn f -> %>
       <%= email_input f, :email, class: "form-control", placeholder: "Email", autofocus: true, required: true %>
       <%= error_tag f, :email %>
 

@@ -5,8 +5,9 @@
       <h1>Create your Account</h1>
     </div>
 
-    <%= form_for @changeset, Routes.account_path(@conn, :create), fn f -> %>
+    <%= bs_form_for @changeset, Routes.account_path(@conn, :create), fn f -> %>
       <%= text_input f, :name, class: "form-control mb-4", placeholder: "Account Name", autofocus: true, data_set_slug: "#account_slug" %>
+      <%= error_tag f, :name %>
 
       <div class="input-group mb-4">
         <div class="input-group-prepend">
@@ -14,8 +15,12 @@
         </div>
 
         <%= text_input f, :slug, class: "form-control", placeholder: "account-name" %>
+        <%= error_tag f, :slug %>
       </div>
 
+      <%= label(f, :plan_id, "Plan") %>
+      <%= select(f, :plan_id, Enum.map(@plans, fn plan -> {Videosnack.Plan.describe(plan), plan.id} end), class: "form-control mb-4") %>
+      <%= error_tag f, :plan_id %>
 
       <div class="form-group text-center">
         <%= submit 'Create Account', class: "btn btn-danger btn-lg" %>

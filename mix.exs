@@ -48,7 +48,8 @@ defmodule Videosnack.MixProject do
       {:poison, "~> 3.1"},
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
-      {:hound, "~> 1.0"}
+      {:hound, "~> 1.0"},
+      {:number, "~> 1.0.0"}
     ]
   end
 
