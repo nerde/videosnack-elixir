@@ -3,6 +3,7 @@ defmodule Videosnack.Repo.Migrations.CreateUsers do
 
   def change do
     create table(:users) do
+      add :avatar_url, :string
       add :name, :string
       add :email, :string, null: false
       add :encrypted_password, :string

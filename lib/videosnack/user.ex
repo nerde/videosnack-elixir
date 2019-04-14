@@ -8,6 +8,7 @@ defmodule Videosnack.User do
   alias Comeonin.Bcrypt
 
   schema "users" do
+    field :avatar_url, :string
     field :email, :string
     field :name, :string
     field :encrypted_password, :string
@@ -35,22 +36,15 @@ defmodule Videosnack.User do
   end
 
   def authenticate_oauth("github" = provider, %{info: info, credentials: %{token: token}}) do
-    authenticate_oauth(%{name: info.name, email: info.email, avatar_url: info.image, provider: provider, token: token,
-                         encrypted_password: generate_password()})
+    authenticate_oauth(%User{name: info.name, email: info.email, avatar_url: info.image, provider: provider,
+                             token: token})
   end
 
-  def authenticate_oauth(attrs) do
-    cs = changeset(%User{}, attrs)
-
-    case Repo.get_by(User, email: cs.changes.email) do
-      nil -> Repo.insert(cs)
+  def authenticate_oauth(user) do
+    case Repo.get_by(User, email: user.email) do
+      nil -> Repo.insert(user)
       user -> {:ok, user}
     end
-  end
-
-  defp generate_password do
-    length = 16
-    :crypto.strong_rand_bytes(length) |> Base.url_encode64 |> binary_part(0, length)
   end
 
   @doc false
