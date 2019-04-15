@@ -1,5 +1,6 @@
-defmodule OnboardingTest do
+defmodule VideosnackWeb.OnboardingTest do
   use Videosnack.DataCase
+  use VideosnackWeb.RoutesCase
   use Hound.Helpers
 
   alias Videosnack.{Account, Member, Repo, User}
@@ -8,8 +9,8 @@ defmodule OnboardingTest do
 
   hound_session()
 
-  test "Signing Up", _meta do
-    authenticate("diego@gmail.com", "123456789")
+  test "Signing Up", %{conn: conn} do
+    authenticate(conn, "diego@gmail.com", "123456789")
 
     users = User |> Repo.all
     assert Enum.count(users) == 1
@@ -26,23 +27,23 @@ defmodule OnboardingTest do
       :ok
     end
 
-    test "with valid user", _meta do
-      authenticate("diego@gmail.com", "123456789")
+    test "with valid user", %{conn: conn} do
+      authenticate(conn, "diego@gmail.com", "123456789")
 
       assert Repo.aggregate(User, :count, :id) == 1
       assert visible_in_page?(~r/Create your Account/)
     end
 
-    test "with invalid password", _meta do
-      authenticate("diego@gmail.com", "12345678")
+    test "with invalid password", %{conn: conn} do
+      authenticate(conn, "diego@gmail.com", "12345678")
 
       assert Repo.aggregate(User, :count, :id) == 1
       assert visible_in_page?(~r/Invalid password/)
     end
   end
 
-  test "Creating my Account", _meta do
-    authenticate("diego@gmail.com", "123456789")
+  test "Creating my Account", %{conn: conn} do
+    authenticate(conn, "diego@gmail.com", "123456789")
 
     find_element(:id, "account_name") |> fill_field("Code Snack")
     find_element(:id, "account_name") |> submit_element()
