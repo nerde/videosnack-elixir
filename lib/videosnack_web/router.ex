@@ -19,22 +19,6 @@ defmodule VideosnackWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", VideosnackWeb do
-    pipe_through :browser
-
-    get "/", LandingController, :index
-
-    resources "/accounts", AccountController, only: [:new, :create]
-
-    scope "/:account_slug" do
-      pipe_through :require_account
-
-      get "/", AccountController, :show
-
-      resources "/projects", ProjectController, only: [:new, :create]
-    end
-  end
-
   scope "/auth", VideosnackWeb do
     pipe_through :browser
 
@@ -42,5 +26,23 @@ defmodule VideosnackWeb.Router do
     post "/", AuthController, :create
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
+  end
+
+  scope "/", VideosnackWeb do
+    pipe_through :browser
+
+    get "/", LandingController, :index
+
+    resources "/accounts", AccountController, only: ~w(new create)a
+
+    scope "/:account_slug" do
+      pipe_through :require_account
+
+      get "/", AccountController, :show
+
+      resources "/projects", ProjectController, only: ~w(new create)a
+
+      get "/:project_slug", ProjectController, :show
+    end
   end
 end

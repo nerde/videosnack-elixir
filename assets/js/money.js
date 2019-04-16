@@ -11,6 +11,7 @@ $(() => {
       value = parseInt(value, 10);
 
       $(target).val(value ? formatCents(value) : '');
+      $(`#${target.id}_cents`).val(value);
     }
   });
 });
