@@ -1,8 +1,7 @@
 defmodule VideosnackWeb.ProjectController do
   use VideosnackWeb, :controller
 
-  alias Videosnack.Project
-  alias Videosnack.Repo
+  alias Videosnack.{Account, Project, Repo}
 
   plug VideosnackWeb.Plugs.RequireUser
 
@@ -20,8 +19,8 @@ defmodule VideosnackWeb.ProjectController do
     end
   end
 
-  def show(conn, %{"project_slug" => slug}) do
-    project = Repo.get_by!(Project, slug: slug)
+  def show(%{assigns: %{current_account: account}} = conn, %{"project_slug" => slug}) do
+    project = Repo.get_by!(Project, slug: slug, account_id: account.id)
     render(conn, :show, project: project)
   end
 end

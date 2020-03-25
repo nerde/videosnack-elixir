@@ -41,6 +41,8 @@ defmodule VideosnackWeb.Router do
       get "/", AccountController, :show
 
       resources "/projects", ProjectController, only: ~w(new create)a
+      resources "/episodes", EpisodeController, only: ~w(new create)a
+      post "/uploads/presign", UploadController, :presign
 
       get "/:project_slug", ProjectController, :show
     end

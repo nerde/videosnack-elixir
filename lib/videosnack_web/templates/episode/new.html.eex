@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3 pt-5">
+    <div class="text-center mb-5">
+      <h1>Upload a Video</h1>
+    </div>
+
+    <%= form_for @changeset, Routes.episode_path(@conn, :create, @current_account.slug), [multipart: true], fn f -> %>
+      <div class="form-group row">
+        <%= label f, :file, "File", class: "col-sm-2 col-form-label" %>
+
+        <div class="col-sm-10">
+          <%= file_input f, :file, class: "mb-4", required: true, accept: "video/mp4,video/webm",
+                                   data_presign_url: Routes.upload_path(@conn, :presign, @current_account.slug),
+                                   data_token: Plug.CSRFProtection.get_csrf_token() %>
+        </div>
+      </div>
+
+      <div class="form-group text-center">
+        <%= submit "Next", class: "btn btn-danger btn-lg" %>
+      </div>
+    <% end %>
+  </div>
+</div>

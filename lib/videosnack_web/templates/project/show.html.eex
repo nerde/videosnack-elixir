@@ -1,0 +1,5 @@
+<div class="row">
+  <div class="col-sm-2 text-center">
+    <%= link "Upload Video", to: Routes.episode_path(@conn, :new, @current_account.slug) %>
+  </div>
+</div>

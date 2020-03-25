@@ -23,3 +23,4 @@ import './markdown';
 import './money';
 import './slugs';
 import './tooltips';
+import './uploads';

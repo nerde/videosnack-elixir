@@ -49,7 +49,10 @@ defmodule Videosnack.MixProject do
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
       {:hound, "~> 1.0"},
-      {:number, "~> 1.0.0"}
+      {:number, "~> 1.0.0"},
+      {:ex_aws, "~> 1.0"},
+      {:hackney, "~> 1.6"},
+      {:uuid, "~> 1.1" }
     ]
   end
 

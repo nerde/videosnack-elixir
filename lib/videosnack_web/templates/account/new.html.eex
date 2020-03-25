@@ -23,7 +23,7 @@
       <%= error_tag f, :plan_id %>
 
       <div class="form-group text-center">
-        <%= submit 'Create Account', class: "btn btn-danger btn-lg" %>
+        <%= submit "Create Account", class: "btn btn-danger btn-lg" %>
       </div>
     <% end %>
   </div>

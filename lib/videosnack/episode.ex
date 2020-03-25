@@ -22,7 +22,7 @@ defmodule Videosnack.Episode do
   end
 
   @doc false
-  def changeset(episode, attrs) do
+  def changeset(episode, attrs \\ %{}) do
     episode
     |> cast(attrs, ~w(name description content license distribution price_cents)a)
     |> validate_required(~w(name license distribution)a)
